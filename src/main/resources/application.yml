@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: "OCPP-2-Client"
+  jpa:
+    properties:
+      hibernate:
+        show_sql: ${HIBERNATE_SHOW_SQL:false}
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      javax:
+        persistence:
+          validation:
+            # avoid double validation on save
+            mode: none
+    # change it once to 'update' to create sample table
+    hibernate:
+      ddl-auto: ${HIBERNATE_DDL_AUTO:validate}
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ocpp
+    username: ${OCPP_DB_USER:admin}
+    password: ${OCPP_DB_PASSWORD:admin}
+    driverClassName: org.postgresql.Driver
+
+
+instance:
+  vendorId: ${VENDOR_ID:Yablochkov}
+  modelId: ${MODEL_ID:HomeStation}
+  firmwareVersion: ${FIRMWARE_VERSION:1.0.0}
+  serialNumber: ${SERIAL_NUMBER:12345}
+
+
+station:
+  connectors:
+    1: COMBO
+    2: CHADEMO
